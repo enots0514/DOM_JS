@@ -7,7 +7,94 @@
 </head>
 <body>
      <h1>함수 기본 살펴보기</h1>
+     <hr/> 
 
+     <p> 자바스크립트 함수는 3가지 방법으로 생성할 수 있다.</p>
+     <p> 1번은 잘 안 쓰지만 자바스크립트가 내부적으로 함수를 생성하는 원리에 해당한다.</p>
+     <P> 보통 익명함수(표현식)인 2번을 주로 활용한다.</P>
+     <p> 2번은 표현식이므로(=) 끝에 세미콜론(;)이 들어간다.</p>
+      <p> 3번 선언적 함수(이름있는 함수)도 종종 사용되지만, 
+          <br/> 표현식이 아니므로 끝에 세미콜론(;)이 붙지 않는다. </p>
+      <hr/>
+     
+
+     <h2> 1.함수 원리</h2>
+     <code>
+     <h3> var add = new Function("x, y", "return x+y;");</h3>
+     <h4>  document.write(add(3,4)); </h4> 
+     => 
+     <script>
+       var add = new Function("x, y", "return x+y;");
+        document.write(add(3,4));  
+      </script>
+    </code>
+     <hr/>
+
+     <h2> 2. 익명 함수</h2>
+     <code>
+     <h3> var add = function(x,y){
+          return x+y;  
+         }; </h3>
+     <h4>  document.write(add(5,4)); </h4> 
+     => 
+     <script>
+       var add = function(x,y){
+          return x+y;  
+         }; 
+        document.write(add(5,4));  
+      </script>
+    </code>
+     <hr/>
+
+     <h2> 3. 선언적 함수</h2>
+     <code>
+     <h3> function add(x,y){
+          return x+y;  
+         } </h3>
+     <h4>  document.write(add(5,6)); </h4> 
+     => 
+     <script>
+       function add(x,y){
+          return x+y;  
+         } 
+        document.write(add(5,6));  
+      </script>
+    </code>
+     <hr/>
+
+     <h2> 4. 함수 인자(매개변수) </h2>
+     <p>함수의 매개변수는 그냥 추가된 이름일 뿐,
+         그 자체는 별 의미가 없다.
+      <br/> 사용되는 건 호출문의 인수이다.
+      <br/>   
+      참고로, 매개변수에는 호출문의 인수(argument)가
+      배열 형식으로 담긴다. 
+      <br/> 이걸 활용할 일은 드물지만 기본원리는 이렇다.               
+     </p>
+     <code>
+     <h3>  function add(x,y){
+        return (`${arguments.length}
+                , ${arguments[5]} , 
+               <br> ${arguments[1]+arguments[2]}`);
+         } 
+     </h3>
+     <h4>  document.write(add(5,6,7,8,9,"argument")); </h4> 
+     => 
+     <script>
+       function add(x,y){
+          return (`${arguments.length}
+                  , ${arguments[5]} , 
+                  ${arguments[1]+arguments[2]}`);
+               
+       }
+        document.write(add(5,6,7,8,9,"argument"));  
+      </script>
+    </code>
+     <hr/>  
+    
+
+      
+    
 
 </body>
 </html>
