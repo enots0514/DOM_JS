@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+</head>
+<body>
+    
+    <h1> 계산기 만들기</h1> 
+     
+    <section>
+      <h2> 사칙연산</h2> 
+      <button id="reset">리셋하기</button> 
+      <div>
+         <input id="no-x1" class = "num" type="text" value="0" dir="rtl" />
+         <!-- <input id="span1" class="circle" type="text" value="+" readonly /> -->
+
+         <select>
+             <option value="plus"> <span> + </span> </option>
+             <option value="minus" > <span> - </span> </option>
+             <option value="multi"><span class="multi"> * </span> </option>
+             <option value="sub"> <span> / </span> </option>
+         </select>
+         <input id="no-y1" class = "num" type="text" value="0" dir="rtl"/>
+         <input id="btn1" class="btn" type="button" value="="  />
+         <input id="no-sum" class = "num" type="text" value="0" readonly dir="rtl"/>
+      </div>
+    </section>
+
+    <style>
+      
+      #reset{
+       background-color: cyan;
+       color:red;
+       font-size:1rem;
+       padding:0.3rem;
+       border-radius: 40% 20% 40% 0% ;
+       outline: 2px double blue;
+       outline-offset:-0.5rem;
+       
+       
+      }
+      select{
+            width:15%;
+     height:100%;
+     font-size:3rem;
+     color:red;
+     background-color: bisque;
+     padding-left:1.9rem ;
+     margin-left:1rem;   
+     border-radius:50%; 
+     padding-top:0.5rem;
+        }
+    option{display:inline-block;
+           background-color: chartreuse; 
+           font-size:2rem; 
+           text-align:center;
+           color:blue;  
+          
+        }   
+
+    
+
+     section{ margin-bottom: 1rem;
+        
+     }   
+      h1{ color:red;
+         margin-bottom:2rem ;
+      }
+      
+     
+     div{
+         padding:1rem;
+        border:1px dotted red;
+        text-align:center;
+     }
+
+     input{
+        display:inline-block;
+        width:15%;
+        height:50%;
+        background-color: navy;
+        padding:1rem;
+        border-radius:20%;
+        margin-left:1rem;
+        
+     }
+ 
+      .circle{
+        width:3%;
+        border-radius:50%;
+        background-color: orangered;
+        text-align:center;
+        font-size:1.2rem;
+        }
+
+      .btn{
+        cursor: pointer; 
+        width:10%;
+        border-radius:30%;
+        background-color: rgba(26, 206, 26, 0.699);
+        text-align:center;
+        font-size:2rem;
+       
+      }
+
+      .num{
+          font-size:3rem; 
+          color:yellow
+      }
+    </style>
+
+
+     <script>
+     
+    //   window.addEventListener("load", function(){
+
+         let noX1 = document.querySelector("#no-x1");
+         let noY1 = document.querySelector("#no-y1");
+         let btn1 = document.querySelector("#btn1");
+         let noSum = document.querySelector("#no-sum");
+
+         let reset = document.querySelector("#reset");
+     
+        
+        //  btn.onclick = function(){
+        //     //  alert("hi");
+
+        // //    let x = parseInt(txtX.value);
+        // //    let y = parseInt(txtY.value);
+     
+        // //    let x = Number(txtX.value);
+        // //    let y = Number(txtY.value);
+
+        //     let x = +(txtX.value);
+        //     let y = +(txtY.value);
+
+
+        //    txtSum.value = x+y;
+
+        //  };
+
+
+        btn1.addEventListener('click', function(){
+            let x1 = +(noX1.value);
+            let y1 = +(noY1.value);
+
+            let option = document.querySelectorAll("option");
+             
+
+          if(option[0].selected) {
+            noSum.value = x1+y1;
+          } else if(option[1].selected) {
+            noSum.value = x1-y1;
+          } else if(option[2].selected) {
+            noSum.value = x1*y1;
+          } else if(option[3].selected) {
+            noSum.value = x1/y1;
+          }
+    
+
+                   
+        });
+
+        reset.addEventListener('click', function(){
+            noX1.value = " ", 
+            noY1.value = ""; 
+            noSum.value = " ";
+                  
+        });
+     
+          
+
+    //   })
+
+
+     </script>
+</body>
+</html>
