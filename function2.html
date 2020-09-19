@@ -3,11 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>function2</title>
+    <title>클로저</title>
+<style>
+ .example{
+     background-color: rgba(25, 25, 112, 0.795);
+     color:red;
+ }
+
+ .design{
+     padding:1rem 0;
+ }
+  
+
+</style>
 </head>
 <body>
-    
+    <h1>클로저 closer</h1>
+    <hr/>
+    <div class="concept design">
+      <p>
+        클로저란 외부변수를 기억하고 이 외부변수에 접근할 수 있는 함수를 의미한다.
+        <br/>
+        자바스크립트에서는 대부분 함수가 자연스럽게 클로저 된다.
+      </p>
+     
+    </div>
+    <hr/>
 
+    <div class="example design">
+          
+      <pre>
+        function outer(){
+            let a = 3;
+                        
+            return function inner(){
+                  return a + 4;
+            }
+        }
+
+         let F = outer();
+         let c = F(); 
+          
+        document.write(c);
+        
+        ==>  <script>
+            function outer(){
+                let a = 3;
+                            
+                return function inner(){
+                      return a + 4;
+                }
+      
+            }
     
-</body>
+             let F = outer();
+             let c = F(); 
+              
+            let d = document.write(c);
+                  
+           </script>        
+        </pre>     
+    </div>    
+    <hr/>
+    <div class="point design">
+      <p>
+        일반적으로 함수는 실행되고 메모리에서 사라진다. 
+        즉, 클로저 된다.
+       <br/> 하지만 out 함수가 실행되고 out 함수가 닫히지 못 한다.
+       <br/> 내부 함수인 inner가 실행되기 위해서는 변수a 값이 필요한데,
+       <br/> 그 변수 a가 외부함수에서 선언되어 있다.
+       <br/> 따라서 inner 함수가 실행되어야만 외부 함수outer가 닫힐 수 있다.
+       <br/> 이 처럼 inner가 외부함수를 닫을(클로저) 수 있기에 클로저라고 부른다.          
+      </p>
+      <hr/>
+    </div>
+  < /body>
 </html>
