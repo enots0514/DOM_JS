@@ -7,12 +7,12 @@
 </head>
 <body>
     
-    <h1> 계산기 만들기</h1> 
+    <h1> 자바스크립트로 <strong>계산기</strong> 만들기</h1> 
      
     <section>
-      <h2> 사칙연산</h2> 
+      <h2> 사칙연산 </h2> 
       <button id="reset">리셋하기</button> 
-      <div>
+      <div id="calcu">
          <input id="no-x1" class = "num" type="text" value="0" dir="rtl" />
          <!-- <input id="span1" class="circle" type="text" value="+" readonly /> -->
 
@@ -26,7 +26,103 @@
          <input id="btn1" class="btn" type="button" value="="  />
          <input id="no-sum" class = "num" type="text" value="0" readonly dir="rtl"/>
       </div>
-    </section>
+   </section>
+    <hr/>   
+    <section>
+       <h2> 계산기 제작 시 체크 포인트 </h2>
+       <ol>
+         <li> input 태그 활용해 값을 받아옴       </li>
+          <br/>
+            <input type="text" id="no-x1" class = "num" value="0" dir="rtl" />
+           <p>
+            <code>
+            input id="no-x1" class = "num" type="text" value="0" dir="rtl"
+           </code>
+          </p>  
+          <p> 이때 dir="rtl"은 입력 글자가 우측에 정렬하는 태그 </p>
+
+         <li> 입력한 값은 글자로 인식되므로, 이를 숫자로 인식되도록 해야함     </li>
+             <pre>
+               입력할 input 태그를 불러오고, 이를 숫자 형식으로 변환함.
+               let noX1 = document.querySelector("#no-x1");
+                  
+               첫번째 방법 :  let x = parseInt(noX1.value);
+               두번째 방법 :  let x = Number(noX1.value);
+               세번째 방법 :  let x = +(noX1.value);
+             </pre>
+         <li> 사칙연산을 하기 위해 4개의 연산자를 옵션으로 배치함   </li>    
+           <select>
+              <option value="plus"> <span> 더하기 </span> </option>
+              <option value="minus" > <span>  &nbsp; 빼기 </span> </option>
+              <option value="multi"><span> 곱하기 </span> </option>
+              <option value="sub"> <span> 나누기 </span> </option>
+          </select>
+             <pre>
+              select
+                option value="plus"  더하기 
+                option value="minus" &nbsp; 빼기 
+                option value="multi" 곱하기
+                option value="sub" 나누기 
+             </pre>
+          <li> 옵션 불러오기 및 활용 시 배열처럼 사용함  </li>
+             <pre>
+                옵션을 불러오면 배열처럼 들어옴               
+               let option = document.querySelectorAll("option");
+              console.log(option);으로 체크하면, 
+               NodeList(4) [option, option, option, option]
+                0: option
+                1: option
+                2: option
+                3: option
+                length: 4
+
+                따라서 이를 switch문이나 if문을 사용해 선택된 옵션만 실행되도록 함.
+                가장 대중적인 if문을 활용하면, 
+                if(option[0].selected) {
+                  noSum.value = x1+y1;
+                } else if(option[1].selected) {
+                  noSum.value = x1-y1;
+                } else if(option[2].selected) {
+                  noSum.value = x1*y1;
+                } else if(option[3].selected) {
+                  noSum.value = x1/y1;
+                }
+             </pre>
+      </ol>
+     </section>
+     <br/>
+     <section id="codeAnw">
+       <h2>완성 코드 확인하기</h2>
+      <pre>       
+      let noX1 = document.querySelector("#no-x1");
+      let noY1 = document.querySelector("#no-y1");
+      let btn1 = document.querySelector("#btn1");
+      let noSum = document.querySelector("#no-sum");
+      let reset = document.querySelector("#reset");
+     
+     btn1.addEventListener('click', function(){
+         let x1 = +(noX1.value);
+         let y1 = +(noY1.value);
+         let option = document.querySelectorAll("option");
+      if(option[0].selected) {
+         noSum.value = x1+y1;
+       } else if(option[1].selected) {
+         noSum.value = x1-y1;
+       } else if(option[2].selected) {
+         noSum.value = x1*y1;
+       } else if(option[3].selected) {
+         noSum.value = x1/y1;
+       }
+      });
+
+     reset.addEventListener('click', function(){
+         noX1.value = " ", 
+         noY1.value = ""; 
+         noSum.value = " ";
+       });
+    </pre>
+    </section> 
+
 
     <style>
       
@@ -60,15 +156,13 @@
           
         }   
 
-     section{ margin-bottom: 1rem;
-        
-     }   
-      h1{ color:red;
-         margin-bottom:2rem ;
-      }
-      
-     
-     div{
+    section{ margin-bottom: 1rem;
+       }  
+       
+      h1>strong{ color:red;
+         }
+
+    #calcu{
          padding:1rem;
         border:1px dotted red;
         text-align:center;
@@ -107,21 +201,24 @@
           font-size:3rem; 
           color:yellow
       }
+
+      pre{
+        background-color: blue;
+        color:coral;
+      }
     </style>
 
 
      <script>
      
     //   window.addEventListener("load", function(){
-
          let noX1 = document.querySelector("#no-x1");
          let noY1 = document.querySelector("#no-y1");
          let btn1 = document.querySelector("#btn1");
          let noSum = document.querySelector("#no-sum");
-
          let reset = document.querySelector("#reset");
-     
         
+       
         //  btn.onclick = function(){
         //     //  alert("hi");
 
@@ -140,13 +237,15 @@
         //  };
 
 
+     
+
         btn1.addEventListener('click', function(){
             let x1 = +(noX1.value);
             let y1 = +(noY1.value);
 
             let option = document.querySelectorAll("option");
-             
-
+           
+            
           if(option[0].selected) {
             noSum.value = x1+y1;
           } else if(option[1].selected) {
@@ -157,9 +256,11 @@
             noSum.value = x1/y1;
           }
     
-
+      
                    
         });
+
+       
 
         reset.addEventListener('click', function(){
             noX1.value = " ", 
