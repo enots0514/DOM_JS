@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <section id="node5"> 
+        <h2> 엘리먼트 노드의 속성 변경하기  </h2>
+  
+         <div>
+              <input class= "src-input" />
+              <!-- <select class="img-select">
+                  <option value="book.jpg" >book</option>
+                  <option value="book1.jpg">book1</option>
+                  <option value="book2.jpg" >book2</option>
+                  <option value="book3.jpg">book3</option>
+                  <option value="book4.jpg">book4</option>
+                  <option value="book5.jpg">book5</option>
+              </select>  -->
+              <input type="reset"  value="1부터 5까지 숫자만 입력" readonly /> 
+              <input class= "change-button" type="button" value="클릭" 
+              /> 
+              
+         </div>   
+         <div>
+              <img class ="img" src="image/book.jpg">
+         </div>
+      </section>
+  
+  
+      <script>
+          var node5 = document.querySelector("#node5");
+          var srcInput = document.querySelector(".src-input");
+          var changeButton = document.querySelector(".change-button");
+          var img = document.querySelector(".img");
+          var imgSelect = document.querySelector(".img-select");
+      
+          changeButton.onclick = function(){
+                        img.src=`image/book${srcInput.value}.jpg`;
+                      }
+      </script>
+  
+  
+  <section id="node6"> 
+      <h2>  엘리먼트 노드의 속성 변경하기  </h2>
+  
+       <div>
+            <input class= "src-input2" />
+  
+            <select class="img-select2">
+                <option value="book.jpg" >book</option>
+                <option value="book1.jpg">book1</option>
+                <option value="book2.jpg" >book2</option>
+                <option value="book3.jpg">book3</option>
+                <option value="book4.jpg">book4</option>
+                <option value="book5.jpg">book5</option>
+            </select> 
+  
+            <input class= "change-button2" type="button" value="보여주기" />
+       </div>   
+       <div>
+            <img class ="img2" src="image/book.jpg" />
+       </div>
+    </section>
+  
+    <script>
+        var node6 = document.querySelector("#node6");
+        var srcInput2 = document.querySelector(".src-input2");
+        var changeButton2 = document.querySelector(".change-button2");
+        var img2 = document.querySelector(".img2");
+        var imgSelect2 = document.querySelector(".img-select2");
+      
+  
+       changeButton2.onclick = function(){
+                img2.src=`image/${imgSelect2.value}`;
+        }
+  
+    </script>
+  
+  <section id="node7"> 
+      <h2>  엘리먼트 노드의 속성 변경하기  </h2>
+  
+       <div>
+            <input class= "src-input3" list ="img-list" />
+  
+            <datalist id="img-list">
+                <option value="book.jpg" >book</option>
+                <option value="book1.jpg">book1</option>
+                <option value="book2.jpg" >book2</option>
+                <option value="book3.jpg">book3</option>
+                <option value="book4.jpg">book4</option>
+                <option value="book5.jpg">book5</option>
+            </datalist> 
+  
+            <!-- <select class="img-select">
+                <option value="book.jpg" >book</option>
+                <option value="book1.jpg">book1</option>
+                <option value="book2.jpg" >book2</option>
+                <option value="book3.jpg">book3</option>
+                <option value="book4.jpg">book4</option>
+                <option value="book5.jpg">book5</option>
+            </select>  -->
+  
+            <input class= "change-button3" type="button" value="보여주기" />
+       </div>   
+       <div>
+            <img class ="img3" src="image/book.jpg" />
+       </div>
+    </section>
+  
+  
+    <script>
+        var node7 = document.querySelector("#node7");
+        var srcInput3 = document.querySelector(".src-input3");
+        var changeButton3 = document.querySelector(".change-button3");
+        var img3 = document.querySelector(".img3");
+          
+  
+        changeButton3.onclick = function(){   
+          img3.src=`image/${srcInput3.value}`
+                      
+           
+        }
+  
+    </script>
+  
+
+
+</body>
+</html>

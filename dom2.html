@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 노드</title>
+</head>
+<body>
+    <h1>DOM 제어 대상 찾기</h1>
+    <hr>
+
+    <h3>.querySelector('css 표현식')</h3>
+    <pre>
+        동일한 셀레틱이 많을 경우에는 첫번째가 선택된다.
+        하지만, css 셀레틱을 활용해 다양한 방법으로 제어 대상을 찾을 수 있다.
+        .querySelector('#txt-x'); // 아이디명
+        .querySelector('.txt-x);   // 클래스명
+        .querySelector('input');    // 태그명
+        .querySelector('input[name="first"]')  // 태그 속성명
+    </pre>
+
+    <h3>.querySelectorAll('css 표현식')</h3>
+       <pre>
+          이때 찾은 대상은 배열로 들어오게 된다.
+          .querySelectorAll('input');        
+          따라서 활용할 때에는 .querySelectorAll('input')[0]; 처럼 사용한다.
+         
+          (예전의  document.getElementsByTagName(' ');
+          document.getElementsByClassName(' ');와 동일한 사용방법이 적용된다.
+          단, querySelector~ 방식은 정적인 컬렉션이고,   
+          getElement~ 방식은 동적인 컬렉션 방식이다.        
+          )
+       </pre>
+
+    <h3> DOM 요소 노드 탐색 - children </h3>
+        <pre>
+            자식 요소들을 찾을 수 있다.
+            .children[0];  .children[1]; 처럼 사용한다.  
+
+          참고로, .childNodes[0]는 노드 탐색으로 공백도 노드로 인식한다.
+          즉, childNodes는 모든 노드를 탐색하지만, 
+          children은 Element type 요소만을 탐색한다.  
+        </pre>
+    <hr>
+
+    <div style="background-color: rgba(17, 68, 136, 0.568); ">
+    <h2>old 방식</h2>
+    <pre>
+       예전 방식으로 최근에는 사용하지 않는 추세이다.
+       document.getElementById('아이디명 ');
+       document.getElementsByTagName('태그명');
+       document.getElementsByClassName('클래스명');
+    </pre>
+    </div>
+</body>
+</html>
