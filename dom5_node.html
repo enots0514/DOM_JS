@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 엘리먼트 조작하기 </title>
+</head>
+<body>
+     <h1>텍스트 노드 추가 삭제하기</h1>
+    <h2>첫번째 방식 결과물</h2>    
+     <div id="ele1" style="background-color: rgba(46, 139, 86, 0.644); border:3px dotted rgba(255, 0, 0, 0.274);"">
+         <p>ele1</p>
+     </div>
+     <h3>첫번째 - 텍스트 노드 생성하기</h3>
+     <code>
+        let txt = document.createTextNode("hello world");
+     </code>
+   
+      <h3>두번째-생성한 텍스트 노드를 추가할 엘리먼트 선택하기</h3>
+      <code>
+        let ele1 = document.querySelector("#ele1");
+      </code>
+     <h3>세번째 - 엘리먼드에 텍스트 노드 추가하기</h3>
+      <code>
+        ele1.append(txt);
+      </code>
+      <script>
+        let txt = document.createTextNode("hello world");
+        let ele1 = document.querySelector("#ele1");
+        ele1.append(txt);
+    </script>  
+   <hr/>
+  
+   <h2>두번째 방식 결과물</h2> 
+   <div id="ele2" style="background-color:rgba(255, 245, 238, 0.835); border:3px dotted rgba(255, 0, 0, 0.374); ">
+       <p>ele2</p>
+   </div>
+    <h3>텍스트 생성 추가 한 번에 하기</h2>
+    <pre><code>
+        let ele2 = document.querySelector("#ele2");
+        ele2.append("hello javascript");
+    </code></pre>
+    <script>
+        let ele2 = document.querySelector("#ele2");
+        ele2.append("hello javascript");
+    </script>
+    <hr/>
+
+   <h1> 노드 조작 활용하기 </h1>
+   <h3>ul엘리먼트에 li 엘리먼트 추가 또는 삭제하기 결과 </h3>
+   <section id="node6" style="background-color:rgba(192, 192, 192, 0.198); 
+   border:3px dotted rgba(255, 0, 0, 0.574); padding:1rem;">
+      <input class="title-input" name="title" />
+      <input type="button" class="add-btn" value="추가" />
+      <input type="button" class="del-btn" value="삭제" />
+      <br/>
+      <ul class="menu-list">
+     </ul>
+   </section>
+   
+   <script>
+      let node6 = document.querySelector("#node6");
+      let menuList = node6.querySelector(".menu-list");
+      let titleInput = node6.querySelector(".title-input");
+      let addBtn = node6.querySelector(".add-btn");
+      let delBtn = node6.querySelector(".del-btn");
+      
+     addBtn.onclick = function(){
+        let title = titleInput.value;
+        let html = `<a href=" ">${title}</a>`;
+        let li = document.createElement("li"); 
+        li.innerHTML = html;
+        menuList.append(li);
+     
+             // menuList.innerHTML += `<li><a href=" ">${title}</a></li>`;
+      };
+    
+     delBtn.onclick = function(){
+        menuList.children[0].remove();      
+    };
+   </script>
+
+   <pre><code>
+    let node6 = document.querySelector("#node6");
+    let menuList = node6.querySelector(".menu-list");
+    let titleInput = node6.querySelector(".title-input");
+    let addBtn = node6.querySelector(".add-btn");
+    let delBtn = node6.querySelector(".del-btn");
+
+   addBtn.onclick = function(){
+      let title = titleInput.value;
+      menuList.innerHTML += 
+      'li>a href=" ">+'title+'/a>/li>';
+    };
+  
+   delBtn.onclick = function(){
+      menuList.children[0].remove();      
+    };
+   </code></pre>
+
+</body>
+</html>
