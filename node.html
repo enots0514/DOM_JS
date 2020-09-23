@@ -113,6 +113,8 @@
     };
 
     //   템블릿 복제 활용하기
+    let t = 0; 
+    //   3. 순차적으로 넣기 위해 t 지정함
     templateButton.onclick = function(){
 
        
@@ -129,28 +131,46 @@
     //     tds[3].textContent = notices[0].writerId;  
     //     tds[4].textContent = notices[0].hit;
     //     tbodyNode.append(cloneTr);    
-            
+       
 
-        // 2. 탬플릿에 데이터 한 번에 다 넣기
+        // // 2. 탬플릿에 데이터 한 번에 다 넣기
         
-        for(let i=0; i<notices.length; i++ ){
+        // for(let i=0; i<notices.length; i++ ){
 
-          let template = section.querySelector("template");
+        //   let template = section.querySelector("template");
+        // // ** importNode  템플릿은 cloneNode로 복제가 아니라 importNode로 불러온다
+        // let cloneTr = document.importNode(template.content, true);
+
+        // let tds = cloneTr.querySelectorAll("td");  
+        // tds[0].textContent = notices[i].id;
+        // tds[1].innerHTML = `<a href=" ${notices[i].id} "> ${notices[i].title} </a>`;
+        // // tds[1].innerHTML = '<a href="' + notices[0].id + '">' + notices[0].title + '</a>';
+        // tds[2].textContent = notices[i].regDate;      
+        // tds[3].textContent = notices[i].writerId;  
+        // tds[4].textContent = notices[i].hit;
+        // tbodyNode.append(cloneTr);
+       
+        // }
+         
+        //   3. 순차적으로 넣기
+        let template = section.querySelector("template");
         // ** importNode  템플릿은 cloneNode로 복제가 아니라 importNode로 불러온다
         let cloneTr = document.importNode(template.content, true);
-
-        let tds = cloneTr.querySelectorAll("td");  
-        tds[0].textContent = notices[i].id;
-        tds[1].innerHTML = `<a href=" ${notices[i].id} "> ${notices[i].title} </a>`;
-        // tds[1].innerHTML = '<a href="' + notices[0].id + '">' + notices[0].title + '</a>';
-        tds[2].textContent = notices[i].regDate;      
-        tds[3].textContent = notices[i].writerId;  
-        tds[4].textContent = notices[i].hit;
-        tbodyNode.append(cloneTr);
-        
-        }
          
+      
+        let tds = cloneTr.querySelectorAll("td");  
+        tds[0].textContent = notices[t].id;
+        tds[1].innerHTML = `<a href=" ${notices[t].id} "> ${notices[t].title} </a>`;
+        // tds[1].innerHTML = '<a href="' + notices[0].id + '">' + notices[0].title + '</a>';
+        tds[2].textContent = notices[t].regDate;      
+        tds[3].textContent = notices[t].writerId;  
+        tds[4].textContent = notices[t].hit;
+               
+        tbodyNode.append(cloneTr);
+        t= t + 1; 
     };
+   
+
 
 });
 
