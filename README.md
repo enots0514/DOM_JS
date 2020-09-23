@@ -9,5 +9,6 @@
     <li> dom4_style 스타일(input type="color"활용) 변경하기 </li>
      <li> dom5_node 노드(엘리먼트) 조작하기(append/remove)</li>
       <li> node 노드 복제 및 탬플릿(template) 복제</li>
+      <li> node2 노드 삽입과 바꾸기 </li>
 
 </ul>
