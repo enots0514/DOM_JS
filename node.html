@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>노드 복제 및 탬플릿(template) 복제</h1>
+
+    <section id="section7">
+        <h1>Ex7-노드 복제와 템플릿 태그</h1>
+        <div>
+            <input type="button" class="clone-button" value="복제" />
+            <input type="button" class="template-button" value="템플릿 복제" />
+        </div>
+        <!-- templeate 태그는 화면에 출력되지 않는다 -->
+        <template>
+            <tr>
+                <td></td>
+                <td><a href=""></a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </template>
+        <table border="1" class="notice-list">
+            <thead>
+                <tr>
+                    <td>번호</td>
+                    <td>제목</td>
+                    <td>작성일</td>
+                    <td>작성자</td>
+                    <td>조회수</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                            <td>1</td>
+                            <td><a href="1">자바스크립트란..</a></td>
+                            <td>2019-01-25</td>
+                            <td>newlec</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><a href="2">유투브에 끌려다니지 않으려고 했는데....ㅜㅜ..</a></td>
+                            <td>2019-01-25</td>
+                            <td>newlec</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>                        
+                            <td>3</td>
+                            <td><a href="3">기본기가 튼튼해야....</a></td>
+                            <td>2019-01-25</td>
+                            <td>newlec</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><a href="4">근데 조회수가 ㅜㅜ..</a></td>
+                            <td>2019-01-25</td>
+                            <td>newlec</td>
+                            <td>0</td>
+                        </tr> -->
+            </tbody>
+        </table>
+    </section>
+    <hr />
+
+  <script>
+    window.addEventListener("load", function(){
+    var notices = [
+        {id:5, title:"퐈이야~~~", regDate:"2019-01-26", writerId:"newlec", hit:0},
+        {id:6, title:"나 좀 복제해줘~", regDate:"2019-01-26", writerId:"newlec", hit:17},
+        {id:7, title:"나 좀 한번에 클론해줘~", regDate:"2019-01-26", writerId:"newlec", hit:18}
+    ];
+
+    var section = document.querySelector("#section7");
+
+    var noticeList =section.querySelector(".notice-list"); 
+    var tbodyNode = noticeList.querySelector("tbody");
+    var cloneButton = section.querySelector(".clone-button");
+    var templateButton = section.querySelector(".template-button");
+
+    cloneButton.onclick = function(){
+        
+        // // 1.복사하기 기본
+        // let tr = tbodyNode.querySelector("tbody tr");
+        // let cloneTr = tr.cloneNode(true);
+        // tbodyNode.append(cloneTr);   
+        
+        // 2. 복사하기 응용(제이슨 데이터 넣기)
+        let tr = tbodyNode.querySelector("tbody tr");
+        let cloneTr = tr.cloneNode(true);
+        let tds = cloneTr.querySelectorAll("td");
+        tds[0].textContent = notices[0].id;
+        // tds[1].innerHTML = `<a href=" ${notices[0].id} "> ${notices[0].title} </a>`;
+        tds[1].innerHTML = '<a href="' + notices[0].id + '">' + notices[0].title + '</a>';
+        tds[2].textContent = notices[0].regDate;      
+        tds[3].textContent = notices[0].writerId;  
+        tds[4].textContent = notices[0].hit;
+        tbodyNode.append(cloneTr);   
+
+        // 3. 변수에 담는 3가지 방법 (탬플릿 문자 포함) 
+        //  1) tds[1].innerHTML = '<a href="' + notices[0].id + '">' + notices[0].title + '</a>';   
+        //  2) let aNode = tds[1].children[0]; * a 태그가 담김
+        //     aNode.href = notices[0].id;
+        //     aNode.textContent = notices[0].title;  
+        //  3) tds[1].innerHTML = `<a href=" ${notices[0].id} "> ${notices[0].title} </a>`;
+    
+    };
+
+    //   템블릿 복제 활용하기
+    templateButton.onclick = function(){
+
+       
+    //    1. 탬플릿에 데이터 넣기
+    //     let template = section.querySelector("template");
+    //     // ** importNode  템플릿은 cloneNode로 복제가 아니라 importNode로 불러온다
+    //     let cloneTr = document.importNode(template.content, true);
+
+    //     let tds = cloneTr.querySelectorAll("td");
+    //     tds[0].textContent = notices[0].id;
+    //     tds[1].innerHTML = `<a href=" ${notices[0].id} "> ${notices[0].title} </a>`;
+    //     // tds[1].innerHTML = '<a href="' + notices[0].id + '">' + notices[0].title + '</a>';
+    //     tds[2].textContent = notices[0].regDate;      
+    //     tds[3].textContent = notices[0].writerId;  
+    //     tds[4].textContent = notices[0].hit;
+    //     tbodyNode.append(cloneTr);    
+            
+
+        // 2. 탬플릿에 데이터 한 번에 다 넣기
+        
+        for(let i=0; i<notices.length; i++ ){
+
+          let template = section.querySelector("template");
+        // ** importNode  템플릿은 cloneNode로 복제가 아니라 importNode로 불러온다
+        let cloneTr = document.importNode(template.content, true);
+
+        let tds = cloneTr.querySelectorAll("td");  
+        tds[0].textContent = notices[i].id;
+        tds[1].innerHTML = `<a href=" ${notices[i].id} "> ${notices[i].title} </a>`;
+        // tds[1].innerHTML = '<a href="' + notices[0].id + '">' + notices[0].title + '</a>';
+        tds[2].textContent = notices[i].regDate;      
+        tds[3].textContent = notices[i].writerId;  
+        tds[4].textContent = notices[i].hit;
+        tbodyNode.append(cloneTr);
+        
+        }
+         
+    };
+
+});
+
+
+  </script>
+
+</body>
+</html>
