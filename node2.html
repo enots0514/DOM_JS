@@ -59,5 +59,47 @@
     </section>
     <hr />
     
+    <script>
+    window.addEventListener("load", function(){
+        const section = document.querySelector("#section8");
+        
+        const noticeList =section.querySelector(".notice-list"); 
+        const tbodyNode = noticeList.querySelector("tbody");
+        const upButton = section.querySelector(".up-button");
+        const downButton = section.querySelector(".down-button");
+        const currentNode = tbodyNode.firstElementChild;//.children[0];
+      
+        downButton.onclick = function(){
+            const nextNode = currentNode.nextElementSibling;
+
+            if(nextNode == null){
+                return;
+            }
+
+          //  tbodyNode.removeChild(nextNode); 
+          //  ===== nextNode.remove();
+          // tbodyNode.insertBefore(nextNode, currentNode); 
+        
+          currentNode.before(nextNode);
+         // ===== nextNode.after(currentNode);
+          
+
+        };
+       
+        upButton.onclick = function(){
+            const prevNode = currentNode.previousElementSibling;
+
+              if(prevNode == null){
+                return;
+                }
+                prevNode.before(currentNode);    
+
+        };
+
+}); 
+
+    </script>
+
+
 </body>
 </html>
