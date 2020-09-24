@@ -7,10 +7,9 @@
     <li> dom2 DOM 제어데상 찾기 </li>
     <li> dom3_image 엘리먼트 속성(이미지) 변경하기 </li>
     <li> dom4_style 스타일(input type="color"활용) 변경하기 </li>
-     <li> dom5_node 노드(엘리먼트) 조작하기(append/remove)</li>
-      <li> node 노드 복제 및 탬플릿(template) 복제</li>
-      <li> node2 노드(테이블 라인) 삽입과 바꾸기 </li>
-      <li> node3 노드(테이블 라인) 선택과 삭제 </li>
-
-
+    <li> dom5_node 노드(엘리먼트) 조작하기(append/remove)</li>
+    <li> node 노드 복제 및 탬플릿(template) 복제</li>
+    <li> node2 노드 삽입과 바꾸기 </li>
+    <li> node3 다중 노드 선택과 자리 바꾸기 </li>
+     
 </ul>

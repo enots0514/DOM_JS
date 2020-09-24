@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자바스크립트 테이블 복제(노드) </title>
+    <title>자바스크립트 템플릿 복제(테이블 활용) </title>
 </head>
 <body>
     
-    <h1> 노드 복제 하기 </h1>
-    <p>아래 테이블의 노드 복제하기 버튼을 누르면 맨 처음 테이블 라인이 복제된다.</p>
-    <h5>  관련한 키워드는 <i style="color:red;"> cloneNode(true) </i>이다.  </h5>
+    <h1> 템플릿 복제 하기 </h1>
+    <p>아래 템플릿 복제하기 버튼을 누르면 JSON(제이슨)으로 저장된 데이터가 복제된다.</p>
+    <h5> 관련한 키워드는 <i style="color:red;"> importNode(elem, true) </i>이다.  </h5>
 <code>
 google
 </code>
     <hr/>
     <section id="node7">
-        <h1> 노드 복제 </h1>
+        <h1> 템플릿 복제 </h1>
         <div>
-            <input type="button" class="clone-btn" value="노드 복제하기" />
+            <input type="button" class="template-btn" value="템플릿 복제하기" />
         </div>
         <br/>
+         <!-- templeate 태그는 화면에 출력되지 않는다 -->
+         <template>
+            <tr>
+                <td></td>
+                <td><a href=""></a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </template>
         <table border="3" class="table-list">
             <thead>
                 <tr>
@@ -31,12 +41,13 @@ google
                 </tr>
             </thead>
             <tbody>
-                <tr style="background-color: rgba(255, 250, 205, 0.692); ">
+                <!-- <tr style="background-color: rgba(255, 250, 205, 0.692); ">
+                    <td>114</td>
                     <td>비주얼 스튜디오 코드 설치</td>
                     <td><a href="https://pafa.tistory.com/114?category=476827">바로가기</a></td>
                     <td>자바스크립트</td>
                     <td>중급</td>
-                    <td>114</td>        
+                            
                 </tr>
                 <tr>
                     <td>105</td>
@@ -58,86 +69,43 @@ google
                     <td><a href="https://pafa.tistory.com/108?category=476827">바로가기</a></td>
                     <td>자바스크립트</td>
                     <td>초급</td>
-                </tr>   
+                </tr>    -->
             </tbody>
         </table>
     </section>
    
   <script>
+ 
+   let notices = [
+        {id:5, title:"퐈이야~~~", regDate:"2019-01-26", writerId:"newlec", hit:0},
+        {id:6, title:"나 좀 복제해줘~", regDate:"2019-01-26", writerId:"newlec", hit:17},
+        {id:7, title:"나 좀 한번에 클론해줘~", regDate:"2019-01-26", writerId:"newlec", hit:18}
+    ];
+   
     const node7 = document.querySelector("#node7");
     const tableList =node7.querySelector(".table-list"); 
     const tbodyNode = tableList.querySelector("tbody");
-    const cloneBtn = node7.querySelector(".clone-btn");
+    const templateBtn = node7.querySelector(".template-btn");
    
-
-    cloneBtn.onclick = function(){
-        const tr = tbodyNode.querySelector("tbody tr");
-        const cloneTr = tr.cloneNode(true);
-        tbodyNode.append(cloneTr);   
-    }
-  </script>
-<div id="ad">  
-<code>
-    google
-</code>
-</div>
- <hr/>
-
-    <h3>POINT</h3>
-    <pre>
-       1) 테이블에서 복제하기 원하는 라인을 선택한다.
-       <code>
-        const tr = tbodyNode.querySelector("tbody tr");
-       </code>
-        여기서는 테이블의 첫번쨰 라인을 선택했다.
-        만약 다른 2번째 라인을 선택하고 싶다면, 다음과 같이 하면 된다.
-        <code>
-        const tr = tbodyNode.querySelectorAll("tbody tr")[1];
-        </code>
-       
-        2) 이렇게 선택한 라인을 복제(cloneNode)하면 된다.
-        <code>
-        const cloneTr = tr.cloneNode(true);
-        </code>
-         여기서 cloneNode(true)는 깊은 복제이고 cloneNode(false)는 얕은 복제이다.
-         차이는 후손까지 복제하는 지, 자신의 요소만 복제하는 지이다.
+     
+    templateBtn.onclick = function(){      
+        let template = node7.querySelector("template");
+        // ** importNode  템플릿은 cloneNode로 복제가 아니라 importNode로 불러온다
+        let cloneTr = document.importNode(template.content, true);
+        // 그런데 복제도 가능한 듯(아래는 dom 자료 활용한 ego)
+        //let cloneTr = template.content.cloneNode(true);
         
-        3) 마지막으로 이렇게 복제한 노드를 테이블의 본문인 tBody에 apppend하면 된다.
-        <code>
+        let tds = cloneTr.querySelectorAll("td");
+        tds[0].textContent = notices[0].id;
+        tds[1].innerHTML = `<a href=" ${notices[0].id} "> ${notices[0].title} </a>`;
+        // tds[1].innerHTML = '<a href="' + notices[0].id + '">' + notices[0].title + '</a>';
+        tds[2].textContent = notices[0].regDate;      
+        tds[3].textContent = notices[0].writerId;  
+        tds[4].textContent = notices[0].hit;
         tbodyNode.append(cloneTr);  
-        </code>      
-        appendChild()도 가능하지만, 이건 old 버전이고 new 버전이 append() 이다.
-    </pre>
-    <code>
-        google
-    </code>  
-   <hr/>
-   <article>
-    <h4>코드 확인 하기</h4>  
-       <pre><code>
-        const node7 = document.querySelector("#node7");
-        const tableList =node7.querySelector(".table-list"); 
-        const tbodyNode = tableList.querySelector("tbody");
-        const cloneBtn = node7.querySelector(".clone-btn");
-           
-        cloneBtn.onclick = function(){
-            const tr = tbodyNode.querySelector("tbody tr");
-            const cloneTr = tr.cloneNode(true);
-            tbodyNode.append(cloneTr);   
-       </code></pre>
-    </article>
- <script>
-      let codes = document.querySelectorAll("pre");
-      codes[0].style.backgroundColor="rgba(255, 250, 225, 0.52)"; 
-      codes[1].style.backgroundColor="rgba(155, 50, 25, 0.52)";
-      codes[1].style.fontSize="1.3rem";
-      codes[1].style.color="rgba(255, 10, 15, 0.77)"; 
+    };
 
-      let moneyAd = document.querySelector("#ad");
-      moneyAd.style.border="5px dotted red";
-      moneyAd.style.borderRadius="50%";
-
- </script>
+  </script>
 
 </body>
 </html>
